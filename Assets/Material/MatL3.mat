@@ -56,16 +56,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondaryTex:
-        m_Texture: {fileID: 2800000, guid: b6741edd7af431b42ac61d91afd854ed, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7897b9960bc8cb7489a1e8eaab6a7066, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Amplitude: 1
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cutoff: 0.817
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstFactor: 10
+    - _EmberBoost: 2
+    - _Feather: 0.0676
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -85,6 +87,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _BurnColour: {r: 1, g: 0, b: 0, a: 1}
+    - _Char: {r: 1, g: 0, b: 0, a: 1}
+    - _CharColour: {r: 0.5660378, g: 0.10613208, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Ember: {r: 0.9702381, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
