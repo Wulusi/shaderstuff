@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MatL5
-  m_Shader: {fileID: 4800000, guid: 30dc0b63b35e053438efecc8adeb4291, type: 3}
+  m_Name: MatL7
+  m_Shader: {fileID: 4800000, guid: 419a881dba07b8346a39e23fa032572c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 9a5189138d2399749adff868c19a766f, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -56,8 +56,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondaryTex:
-        m_Texture: {fileID: 2800000, guid: f672cf1f0209a41159fb21bb1512c573, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Texture: {fileID: 2800000, guid: 710007095a61c4c818e3133cdace7eed, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UVTex:
         m_Texture: {fileID: 2800000, guid: 2709a06369f8640e094d8fb67031e8f4, type: 3}
@@ -99,6 +99,6 @@ Material:
     - _DistortionAnimation: {r: 1, g: 3, b: 0, a: 0}
     - _Ember: {r: 0.70258236, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _U_Params: {r: 1, g: 3, b: 0, a: 0}
-    - _V_Params: {r: 4, g: 3, b: 0, a: 0}
+    - _U_Params: {r: 1, g: 1, b: 0, a: 0}
+    - _V_Params: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
