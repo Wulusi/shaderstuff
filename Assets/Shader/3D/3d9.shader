@@ -1,4 +1,4 @@
-Shader "Shader3D/Lesson83D"
+Shader "Shader3D/Lesson93D"
 {
     Properties
     {
@@ -9,6 +9,8 @@ Shader "Shader3D/Lesson83D"
         _NormalMapOne("Normal Map One", 2D) = "white" {}
 
         _NormalMapTwo("Normal Map Two", 2D) = "white" {}
+
+        _FlowMap("Flow Map", 2D) = "white" {}
 
         _WaterFlowSpeed("Water Flow Speed", Range(0,10)) = 0
 
@@ -71,7 +73,7 @@ Shader "Shader3D/Lesson83D"
                 float3 bitangent: TEXCOORD4;
             };
 
-            sampler2D _MainTex, _NormalMapOne, _NormalMapTwo;
+            sampler2D _MainTex, _NormalMapOne, _NormalMapTwo, _FlowMap;
             float4 _MainTex_ST;
             float _Gloss, _SpecIntensity;
 
@@ -99,15 +101,19 @@ Shader "Shader3D/Lesson83D"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                //Flow map
+                float3 flowMap = tex2D(_FlowMap, i.uv);
+                float2 flowDirection = flowMap.rg + _Time.xx;
+                fixed4 col = tex2D(_MainTex, flowDirection);
                 //Normal maps
-
+                //return fixed4(col.rgb, 1);
                 float3 finalNormal = i.normal;
 
                 #if NORMAL_MAP_ON
-                    fixed3 normalMapOne = UnpackNormal(tex2D(_NormalMapOne, i.uv + _Time.xx * _WaterFlowSpeed)); //*2 - 1;
+                    fixed3 normalMapOne = UnpackNormal(tex2D(_NormalMapOne, flowDirection + _Time.xx * _WaterFlowSpeed)); //*2 - 1;
                     float3 finalNormalOne = normalMapOne.r * i.tangent + normalMapOne.g * i.bitangent + normalMapOne.b * i.normal;
 
-                    fixed3 normalMapTwo = UnpackNormal(tex2D(_NormalMapTwo, i.uv - _Time.xx * _WaterFlowSpeed)); //*2 - 1;
+                    fixed3 normalMapTwo = UnpackNormal(tex2D(_NormalMapTwo, flowDirection - _Time.xx * _WaterFlowSpeed)); //*2 - 1;
                     float3 finalNormalTwo = normalMapTwo.r * i.tangent + normalMapTwo.g * i.bitangent + normalMapTwo.b * i.normal;
                     
                     finalNormal = normalize(float3(finalNormalOne.rg + finalNormalTwo.rg, finalNormalOne.b * finalNormalTwo.b));
@@ -115,7 +121,7 @@ Shader "Shader3D/Lesson83D"
 
                 //return fixed4(finalNormal * 0.5 + 0.5,1);
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                //fixed4 col = tex2D(_MainTex, i.uv);
                 float ndotl = max(0, dot(finalNormal, _WorldSpaceLightPos0.xyz));
                 float3 lighting = ndotl * _LightColor0 + ShadeSH9(float4(finalNormal, 1));
 
