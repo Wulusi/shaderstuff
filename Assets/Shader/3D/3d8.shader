@@ -1,4 +1,4 @@
-Shader "Shader3D/Lesson73D"
+Shader "Shader3D/Lesson83D"
 {
     Properties
     {
@@ -6,8 +6,11 @@ Shader "Shader3D/Lesson73D"
         
         [Toggle]
         NORMAL_MAP("Normal Mapping", float) = 0
-        _NormalMap("Normal Map", 2D) = "white" {}
+        _NormalMapOne("Normal Map One", 2D) = "white" {}
 
+        _NormalMapTwo("Normal Map Two", 2D) = "white" {}
+
+        _WaterFlowSpeed("Water Flow Speed", Range(0,10)) = 0
 
         [Toggle]
         SPEC("Specular", float) = 0
@@ -68,17 +71,16 @@ Shader "Shader3D/Lesson73D"
                 float3 bitangent: TEXCOORD4;
             };
 
-            sampler2D _MainTex, _NormalMap;
+            sampler2D _MainTex, _NormalMapOne, _NormalMapTwo;
             float4 _MainTex_ST;
             float _Gloss, _SpecIntensity;
 
             float4 _FresnelColor;
-            float _FresnelRamp, _FresnelIntensity;
+            float _FresnelRamp, _FresnelIntensity, _WaterFlowSpeed;
 
             v2f vert (appdata v)
             {
                 v2f o;
-                UNITY_INITIALIZE_OUTPUT(v2f, o)
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
@@ -101,8 +103,13 @@ Shader "Shader3D/Lesson73D"
                 float3 finalNormal = i.normal;
 
                 #if NORMAL_MAP_ON
-                    fixed3 normalMap = UnpackNormal(tex2D(_NormalMap, i.uv)); //*2 - 1;
-                    finalNormal = normalMap.r * i.tangent + normalMap.g * i.bitangent + normalMap.b * i.normal;
+                    fixed3 normalMapOne = UnpackNormal(tex2D(_NormalMapOne, i.uv + _Time.xx)); //*2 - 1;
+                    float3 finalNormalOne = normalMapOne.r * i.tangent + normalMapOne.g * i.bitangent + normalMapOne.b * i.normal;
+
+                    fixed3 normalMapTwo = UnpackNormal(tex2D(_NormalMapTwo, i.uv)); //*2 - 1;
+                    float3 finalNormalTwo = normalMapTwo.r * i.tangent + normalMapTwo.g * i.bitangent + normalMapTwo.b * i.normal;
+                    
+                    finalNormal = normalize(float3(finalNormalOne.rg + finalNormalTwo.rg, finalNormalOne.b * finalNormalTwo.b));
                 #endif
 
                 //return fixed4(finalNormal * 0.5 + 0.5,1);

@@ -68,6 +68,7 @@ Shader "Shader3D/Lesson63D"
             v2f vert (appdata v)
             {
                 v2f o;
+                UNITY_INITIALIZE_OUTPUT(v2f, o)
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
