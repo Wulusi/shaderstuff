@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MatL19
-  m_Shader: {fileID: 4800000, guid: 7c7af5f46dd15c84d83aa4b49caf1122, type: 3}
+  m_Name: MatL20
+  m_Shader: {fileID: 4800000, guid: e58a7f457ef07da42b928d86093dcf92, type: 3}
   m_ShaderKeywords: FRESNEL_ON NORMAL_MAP_ON REFLECTION_ON SPEC_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -94,9 +94,9 @@ Material:
     - _EmberBoost: 3.25
     - _Feather: 0.0489
     - _FlowIntensity: 1
-    - _FresnelIntensity: 1.2
-    - _FresnelRamp: 4.2
-    - _Gloss: 1.18
+    - _FresnelIntensity: 1
+    - _FresnelRamp: 1
+    - _Gloss: 5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -112,14 +112,15 @@ Material:
     - _Rotation: 6.3
     - _Scale: 2.9
     - _SmoothnessTextureChannel: 0
-    - _SpecIntensity: 0.68
+    - _SpecIntensity: 2
     - _SpecularHighlights: 1
     - _Speed: 10
     - _SrcBlend: 1
     - _SrcFactor: 5
     - _Thickness: 0.077
     - _UVSec: 0
-    - _WaterFlowSpeed: 0.1
+    - _WaterDepth: 1
+    - _WaterFlowSpeed: 0.47
     - _ZWrite: 1
     m_Colors:
     - _BurnColour: {r: 1, g: 0, b: 0, a: 1}
@@ -129,8 +130,9 @@ Material:
     - _DistortionAnimation: {r: 1, g: 3, b: 0, a: 0}
     - _Ember: {r: 0.70258236, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShineTint: {r: 0, g: 0, b: 0, a: 1}
     - _U_Params: {r: 1, g: 1, b: 0, a: 0}
     - _V_Params: {r: 1, g: 1, b: 0, a: 0}
+    - _WaterDepthColor: {r: 0, g: 0.053398024, b: 0.2735849, a: 1}
   m_BuildTextureStacks: []
