@@ -37,12 +37,12 @@ Shader "Shader3D/Lesson123D"
             {
                 v2f o;
                 o.uv = v.uv;
-                float xMod = tex2Dlod(_MainTex, float4(o.uv.xy, 0, 1));
+                float xMod = tex2Dlod(_MainTex, float4(o.uv.xy, 1, 0));
                 xMod = xMod * 2 - 1;
 
-                o.uv.x = sin(xMod * 10 - _Time.y);
+                o.uv.x = sin(xMod * 2 - _Time.y) ;
                 float3 vert = v.vertex;
-                vert.y = o.uv.x;
+                vert.z = o.uv.x * 0.001;
                 o.uv.x = o.uv.x * 0.5 + 0.5;
 
                 o.vertex = UnityObjectToClipPos(vert);
@@ -51,7 +51,7 @@ Shader "Shader3D/Lesson123D"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return fixed4(i.uv.x, 0.2,0.2,1);
+                return fixed4(i.uv.x * 0.5 ,0.51 ,0 ,0);
             }
             ENDCG
         }
